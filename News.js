@@ -5,19 +5,21 @@ mongoose.connect(process.env.DB, { useNewUrlParser: true } );
 mongoose.set('useCreateIndex', true);
 
 
-// Movie schema
-var MovieSchema = new Schema({
+// News Object
+var NewsSchema = new Schema({
+    username: String, //username of user that saved the movie
+    websiteName: String,
     title: String,
-    yearReleased: String,
-    genre: String,
-    actors: [[String, String], [String, String], [String, String]],
-    imageUrl: String
+    url: String,
+    urlToImage: String,
+    content: String
 });
 
+
 // hash the password before the user is saved
-MovieSchema.pre('save', function(next) {
+NewsSchema.pre('save', function(next) {
     return next();
 });
 
 // return the model
-module.exports = mongoose.model('movies', MovieSchema);
+module.exports = mongoose.model('news', NewsSchema);

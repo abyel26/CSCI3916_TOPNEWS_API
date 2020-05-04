@@ -12,7 +12,7 @@ mongoose.set('useCreateIndex', true);
 var UserSchema = new Schema({
     name: String,
     username: { type: String, required: true, index: { unique: true }},
-    password: { type: String, required: true, select: false }
+    password: { type: String, required: true, select: false },
 });
 
 // hash the password before the user is saved
@@ -35,7 +35,7 @@ UserSchema.methods.comparePassword = function(password, callback) {
     var user = this;
 
     bcrypt.compare(password, user.password, function(err, isMatch) {
-       callback(isMatch) ;
+        callback(isMatch) ;
     });
 };
 
